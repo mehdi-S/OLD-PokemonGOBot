@@ -30,13 +30,27 @@ We use [Slack](https://slack.com) as a web chat. [Click here to join the chat!](
 ### Python Installation
     [Install Python 2.7](https://wiki.python.org/moin/BeginnersGuide/Download)
     [Install PIP](https://pip.pypa.io/en/stable/installing/)
+
 ### Google Protobuf Installation
     MAC:  brew update && brew install --devel protobuf
-### Install Pokemon_Go_Bot
 
-    Download or clone the repository.
-    Using a terminal navigate into the clone repository.
-    Install all requirements for the project using `pip install -r ./requirements.txt`
+### Install PokemonGo-Bot for NORMAL usage
+
+Download or clone the **master** branch of the repository: `git clone -b master git@github.com:PokemonGoF/PokemonGo-Bot.git`
+
+Using a terminal navigate into the clone repository.
+
+Install all requirements for the project using `pip install -r ./requirements.txt`
+
+### Develop PokemonGo-Bot
+
+Download or clone the **dev** branch of the repository: `git clone -b dev git@github.com:PokemonGoF/PokemonGo-Bot.git `
+
+Using a terminal navigate into the clone repository.
+
+Install all requirements for the project using `pip install -r ./requirements.txt`
+**Code forest, code!**
+
 ### Google Maps API (Code is not done yet)
 
 
@@ -100,15 +114,18 @@ Quick Tip: When using this script, use a Lucky egg to double the XP for 30 mins.
  * geopy
  * s2sphere
  * googlemaps
+ * pgoapi
+To install the pgoapi use `pip install -e git://github.com/tejado/pgoapi.git#egg=pgoapi` 
 
 
 ## Contributors (Don't forget add yours here when you create PR:)
 eggins -- The first pull request :)  
 crack00r  
-ethervoid
-Bashin
-tstumm
-TheGoldenXY
+ethervoid  
+Bashin  
+tstumm  
+TheGoldenXY  
+Reaver01  
 
 ## Credits
 ### The works are based on the Pokemon Go API

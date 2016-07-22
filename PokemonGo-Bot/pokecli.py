@@ -38,7 +38,7 @@ import codecs
 if sys.version_info >= (2, 7, 9):
     ssl._create_default_https_context = ssl._create_unverified_context
 
-from bot import PokemonGoBot
+from pokemongo_bot import PokemonGoBot
 
 def init_config():
     parser = argparse.ArgumentParser()
@@ -86,28 +86,11 @@ def main():
     sys.stdout = codecs.getwriter('utf8')(sys.stdout)
     sys.stderr = codecs.getwriter('utf8')(sys.stderr)
 
-    # @eggins clean log
-    print('[x] Initializing PokemonGO Bot v1.0')
-    time.sleep(1)
-    print('[x] PokemonGo Bot [@PokemonGoF | @eggins | @crack00r | @ethervoid | /r/pokemongodev]')
-
     config = init_config()
     if not config:
         return
 
-    if config.debug:
-        # log level for http request class
-        logging.getLogger("requests").setLevel(logging.WARNING)
-        # log level for main pgoapi class
-        logging.getLogger("pgoapi").setLevel(logging.INFO)
-        # log level for internal pgoapi class
-        logging.getLogger("rpc_api").setLevel(logging.INFO)
-
-    if config.debug:
-        logging.getLogger("requests").setLevel(logging.DEBUG)
-        logging.getLogger("pgoapi").setLevel(logging.DEBUG)
-        logging.getLogger("rpc_api").setLevel(logging.DEBUG)
-
+    print('[x] PokemonGO Bot v1.0')
     print('[x] Configuration Initialized')
 
     bot = PokemonGoBot(config)

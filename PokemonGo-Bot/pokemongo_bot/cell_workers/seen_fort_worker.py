@@ -1,7 +1,10 @@
 import json
 import time
 from math import radians, sqrt, sin, cos, atan2
-from pgoapi.utilities import f2i, h2f, distance
+from pgoapi.utilities import f2i, h2f
+from utils import distance
+from pokemongo_bot.human_behaviour import sleep
+
 
 class SeenFortWorker(object):
 
@@ -12,11 +15,12 @@ class SeenFortWorker(object):
         self.config = bot.config
         self.item_list = bot.item_list
         self.rest_time = 50
-    def walking_hook(own,i):
-        print '\ranother walking_hook ',i, 
+        self.stepper = bot.stepper
+
     def work(self):
         lat = self.fort['latitude']
         lng = self.fort['longitude']
+
         fortID = self.fort['id']
         dist = distance(self.position[0], self.position[1], lat, lng)
 
@@ -24,20 +28,22 @@ class SeenFortWorker(object):
         if dist > 10:
             print('Need to move closer to Pokestop')
             position = (lat, lng, 0.0)
+
             if self.config.walk > 0:
-                self.api.walk(self.config.walk, *position,walking_hook=self.walking_hook)
+                self.stepper._walk_to(self.config.walk, *position)
             else:
                 self.api.set_position(*position)
             self.api.player_update(latitude=lat,longitude=lng)
             response_dict = self.api.call()
             print('Arrived at Pokestop')
-            time.sleep(1.2)
+            sleep(2)
 
         self.api.fort_details(fort_id=self.fort['id'], latitude=position[0], longitude=position[1])
         response_dict = self.api.call()
         fort_details = response_dict['responses']['FORT_DETAILS']
-        print('Now at Pokestop: ' + fort_details['name'] + ' - Spinning...')
-        time.sleep(2)
+        fort_name = fort_details['name'].encode('utf8', 'replace')
+        print('Now at Pokestop: ' + fort_name + ' - Spinning...')
+        sleep(2)
         self.api.fort_search(fort_id=self.fort['id'], fort_latitude=lat, fort_longitude=lng, player_latitude=f2i(position[0]), player_longitude=f2i(position[1]))
         response_dict = self.api.call()
         if 'responses' in response_dict and \
@@ -90,7 +96,7 @@ class SeenFortWorker(object):
             else:
                 print('may search too often, lets have a rest')
                 return 11
-        time.sleep(8)
+        sleep(8)
         return 0
 
     @staticmethod

@@ -2,5 +2,13 @@
     "auth_service": "google",
     "username": "example@gmail.com",
     "password": "password11!!",
-    "location": "New York"
+    "location": "New York",
+    "cp": "100",
+    "gmapkey": "CHANGME",
+    "maxsteps": "100",
+    "spinstop": "False",
+    "walk": "4.16",
+    "debug": "False",
+    "test": "False"
 }
+
