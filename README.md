@@ -1,1 +1,4 @@
 # OLD-PokemonGOBot
+
+ALL CREDIT TO https://github.com/PokemonGoF/PokemonGo-Bot
+UPLOADED IT BECAUSE LAST VERSION DONT WORK FOR ME
